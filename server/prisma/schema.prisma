@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  PROVIDER
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(CLIENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  providerProfile ProviderProfile?
+  bookings        Booking[]        @relation("UserBookings")
+  reviews         Review[]         @relation("UserReviews")
+  notifications   Notification[]
+  supportMessages SupportMessage[]
+}
+
+model ProviderProfile {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  user        User     @relation(fields: [userId], references: [id])
+  phone       String?
+  address     String?
+  bio         String?  @db.Text
+  idProofUrl  String?
+  isVerified  Boolean  @default(false)
+  
+  services    Service[]
+  bookings    Booking[] @relation("ProviderBookings")
+  reviews     Review[]  @relation("ProviderReviews")
+
+  @@index([userId])
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  providerId  Int
+  provider    ProviderProfile @relation(fields: [providerId], references: [id])
+  title       String
+  description String   @db.Text
+  videoUrl    String?
+  imageUrl    String?
+  price       Decimal
+  category    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  bookings    Booking[]
+  
+  @@index([providerId])
+}
+
+model Booking {
+  id          Int           @id @default(autoincrement())
+  userId      Int
+  client      User          @relation("UserBookings", fields: [userId], references: [id])
+  providerId  Int
+  provider    ProviderProfile @relation("ProviderBookings", fields: [providerId], references: [id])
+  serviceId   Int
+  service     Service       @relation(fields: [serviceId], references: [id])
+  
+  date        DateTime
+  status      BookingStatus @default(PENDING)
+  notes       String?       @db.Text
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  review      Review?
+
+  @@index([userId])
+  @@index([providerId])
+  @@index([serviceId])
+}
+
+model Review {
+  id          Int      @id @default(autoincrement())
+  bookingId   Int      @unique
+  booking     Booking  @relation(fields: [bookingId], references: [id])
+  reviewerId  Int
+  reviewer    User     @relation("UserReviews", fields: [reviewerId], references: [id])
+  providerId  Int
+  provider    ProviderProfile @relation("ProviderReviews", fields: [providerId], references: [id])
+  
+  rating      Int
+  comment     String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  @@index([bookingId])
+  @@index([reviewerId])
+  @@index([providerId])
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model SupportMessage {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id])
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  status    String   @default("OPEN") // OPEN, IN_PROGRESS, RESOLVED
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}

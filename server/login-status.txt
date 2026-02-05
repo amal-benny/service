@@ -1,0 +1,3 @@
+User: plumber@example.com
+Role: PROVIDER
+Password Valid: true

@@ -1,0 +1,13 @@
+Found 6 users.
+User: admin@example.com, Role: ADMIN
+Password '12345678' match: true
+User: client@example.com, Role: CLIENT
+Password '12345678' match: true
+User: plumber@example.com, Role: PROVIDER
+Password '12345678' match: true
+User: electric@example.com, Role: PROVIDER
+Password '12345678' match: true
+User: cleaner@example.com, Role: PROVIDER
+Password '12345678' match: true
+User: mover@example.com, Role: PROVIDER
+Password '12345678' match: true

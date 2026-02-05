@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "providerId": 1,
+    "title": "Emergency Pipe Repair",
+    "description": "Quick fix for bursting pipes and severe leaks. Available 24/7.",
+    "videoUrl": null,
+    "imageUrl": "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "price": "120",
+    "category": "Plumbing",
+    "createdAt": "2026-02-03T15:29:12.943Z",
+    "updatedAt": "2026-02-03T15:29:12.943Z",
+    "provider": {
+      "id": 1
+    }
+  },
+  {
+    "id": 2,
+    "providerId": 1,
+    "title": "Faucet Installation",
+    "description": "Installation of new faucets for kitchen and bathroom.",
+    "videoUrl": null,
+    "imageUrl": "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "price": "80",
+    "category": "Plumbing",
+    "createdAt": "2026-02-03T15:29:12.943Z",
+    "updatedAt": "2026-02-03T15:29:12.943Z",
+    "provider": {
+      "id": 1
+    }
+  },
+  {
+    "id": 3,
+    "providerId": 2,
+    "title": "Full Home Rewiring",
+    "description": "Complete electrical rewiring for older homes to ensure safety.",
+    "videoUrl": null,
+    "imageUrl": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "price": "1500",
+    "category": "Electrical",
+    "createdAt": "2026-02-03T15:29:12.965Z",
+    "updatedAt": "2026-02-03T15:29:12.965Z",
+    "provider": {
+      "id": 2
+    }
+  },
+  {
+    "id": 4,
+    "providerId": 2,
+    "title": "Light Fixture Installation",
+    "description": "Install chandeliers, pendant lights, and recessed lighting.",
+    "videoUrl": null,
+    "imageUrl": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "price": "90",
+    "category": "Electrical",
+    "createdAt": "2026-02-03T15:29:12.965Z",
+    "updatedAt": "2026-02-03T15:29:12.965Z",
+    "provider": {
+      "id": 2
+    }
+  },
+  {
+    "id": 5,
+    "providerId": 3,
+    "title": "Deep House Cleaning",
+    "description": "Thorough cleaning of all rooms, including carpets and windows.",
+    "videoUrl": null,
+    "imageUrl": "https://images.unsplash.com/photo-1581578731117-104529302f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "price": "200",
+    "category": "Cleaning",
+    "createdAt": "2026-02-03T15:29:12.976Z",
+    "updatedAt": "2026-02-03T15:29:12.976Z",
+    "provider": {
+      "id": 3
+    }
+  },
+  {
+    "id": 6,
+    "providerId": 3,
+    "title": "Move-in/Move-out Clean",
+    "description": "Get your place spotless before you move in or after you leave.",
+    "videoUrl": null,
+    "imageUrl": "https://images.unsplash.com/photo-1527515673516-75c44e7154cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "price": "250",
+    "category": "Cleaning",
+    "createdAt": "2026-02-03T15:29:12.976Z",
+    "updatedAt": "2026-02-03T15:29:12.976Z",
+    "provider": {
+      "id": 3
+    }
+  },
+  {
+    "id": 7,
+    "providerId": 4,
+    "title": "Local Moving Service",
+    "description": "Truck and 2 movers for local moves within 30 miles.",
+    "videoUrl": null,
+    "imageUrl": "https://images.unsplash.com/photo-1600518464441-9154a4dea21b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "price": "100",
+    "category": "Moving",
+    "createdAt": "2026-02-03T15:29:12.996Z",
+    "updatedAt": "2026-02-03T15:29:12.996Z",
+    "provider": {
+      "id": 4
+    }
+  },
+  {
+    "id": 8,
+    "providerId": 1,
+    "title": "House Cleaning",
+    "description": "We make your home clean and tidy just tell us the place and time we eill be there to make the place you have never seen before",
+    "videoUrl": null,
+    "imageUrl": null,
+    "price": "100",
+    "category": "Cleaning",
+    "createdAt": "2026-02-03T15:33:29.990Z",
+    "updatedAt": "2026-02-03T15:33:29.990Z",
+    "provider": {
+      "id": 1
+    }
+  }
+]
