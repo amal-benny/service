@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt'); // Added bcrypt for password hashing
 const prisma = require('../utils/prisma');
 
 // @desc    Get all users
@@ -12,7 +13,7 @@ const getAllUsers = async (req, res) => {
         email: true,
         role: true,
         createdAt: true,
-        providerProfile: { select: { id: true, isVerified: true } },
+        providerProfile: { select: { id: true, isVerified: true } }, // Included id
       },
     });
     res.json(users);
@@ -41,6 +42,41 @@ const verifyProvider = async (req, res) => {
     });
 
     res.json(updatedProvider);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// @desc    Admin reset user password
+// @route   PUT /api/admin/reset-password/:id
+// @access  Private/Admin
+const adminResetPassword = async (req, res) => {
+  const { newPassword } = req.body;
+  const userId = parseInt(req.params.id);
+
+  if (!newPassword || newPassword.length < 6) {
+    return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+  }
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedPassword },
+    });
+
+    res.json({ message: 'Password reset successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
@@ -82,6 +118,7 @@ const updateSupportStatus = async (req, res) => {
 module.exports = {
   getAllUsers,
   verifyProvider,
+  adminResetPassword,
   getSupportMessages,
   updateSupportStatus
 };
