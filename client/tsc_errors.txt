@@ -1,0 +1,1 @@
+src/components/dashboard/DashboardCharts.tsx(22,55): error TS18048: 'percent' is possibly 'undefined'.
