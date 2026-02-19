@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { User, Mail, Shield, ShieldCheck, Key, Lock, CheckCircle2 } from 'lucide-react';
